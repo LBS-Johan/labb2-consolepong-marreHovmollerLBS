@@ -1,10 +1,14 @@
-﻿namespace Labb2_ConsolePong
+﻿using System.Text;
+
+namespace Labb2_ConsolePong
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int gameSpeed = 100; //milliseconds per update
+            Console.OutputEncoding = Encoding.UTF8; //Tillåt alla Unicode-symboler
+
+            int gameSpeed = 50; //milliseconds per update
             Game game = new Game();
             game.StartGame();
 
