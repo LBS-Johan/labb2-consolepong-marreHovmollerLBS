@@ -8,14 +8,16 @@ namespace Labb2_ConsolePong
         {
             Console.OutputEncoding = Encoding.UTF8; //Tillåt alla Unicode-symboler
 
-            int gameSpeed = 50; //milliseconds per update
+            int gameSpeed = 30; //milliseconds per update
             Game game = new Game();
             game.StartGame();
 
             while (true)
             {
-                if (game.Run() == false)
+                if (!game.Run())
                 {
+                    Console.Clear();
+                    Console.SetCursorPosition(Game.Width / 2, Game.Height / 2);
                     Console.WriteLine("Game over");
                     break;
                 }
