@@ -13,6 +13,13 @@ namespace Labb2_ConsolePong
         public int Y { get; private set; }
         public int XVelocity { get; private set; }
         public int YVelocity { get; private set; }
+        /// <summary>
+        /// En boll
+        /// </summary>
+        /// <param name="x">x-position</param>
+        /// <param name="y"></param>
+        /// <param name="xVelocity"></param>
+        /// <param name="yVelocity"></param>
         public Ball(int x, int y, int xVelocity, int yVelocity)
         {
             X = x;
@@ -33,9 +40,12 @@ namespace Labb2_ConsolePong
             X += XVelocity;
             Y += YVelocity;
         }
+        /// <summary>
+        /// Ritar ut bollen
+        /// </summary>
         public void Draw()
         {
-            Console.SetCursorPosition(X, Y);
+            Console.SetCursorPosition(X, Y); //aosdhfashdf
             Console.Write("◯");
             Console.ResetColor();
         }
@@ -50,6 +60,7 @@ namespace Labb2_ConsolePong
                 if (position.Y == Y && position.X == X - 1)
                 {
                     XVelocity *= -1;
+                    Program.SpeedUp();
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
@@ -58,13 +69,9 @@ namespace Labb2_ConsolePong
                 if (position.Y == Y && position.X == X + 1)
                 {
                     XVelocity *= -1;
+                    Program.SpeedUp();
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
-            }
-            if (X == Game.Width - 1 || X == 1)
-            {
-                X = Game.Width / 2;
-                Y = Game.Height / 2;
             }
         }
     }

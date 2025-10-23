@@ -4,11 +4,16 @@ namespace Labb2_ConsolePong
 {
     internal class Program
     {
+        static float baseSpeed;
+        static float speedModifier;
+        static float gameSpeed; //milliseconds per update
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8; //Tillåt alla Unicode-symboler
 
-            int gameSpeed = 30; //milliseconds per update
+            baseSpeed = 100;
+            gameSpeed = baseSpeed;
+            speedModifier = 2f;
             Game game = new Game();
             game.StartGame();
 
@@ -22,8 +27,13 @@ namespace Labb2_ConsolePong
                     break;
                 }
 
-                Thread.Sleep(gameSpeed);
+                Thread.Sleep((int) Math.Round(gameSpeed));
             }
+        }
+        public static void SpeedUp()
+        {
+            gameSpeed *= speedModifier; 
+            //(int) Math.Round(float)
         }
     }
 }
