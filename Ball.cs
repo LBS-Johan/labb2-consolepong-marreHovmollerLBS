@@ -32,8 +32,8 @@ namespace Labb2_ConsolePong
             X = Game.Width / 2;
             Y = Game.Height / 2;
 
-            XVelocity = Game.RandomNumber(0, 1) == 2 ? -1 : 1;
-            YVelocity = Game.RandomNumber(0, 1) == 2 ? -1 : 1;
+            XVelocity = Game.RandomNumber(0, 2) == 1 ? -1 : 1;
+            YVelocity = Game.RandomNumber(0, 2) == 1 ? -1 : 1;
         }
         public void Move()
         {
@@ -47,7 +47,6 @@ namespace Labb2_ConsolePong
         {
             Console.SetCursorPosition(X, Y); //aosdhfashdf
             Console.Write("◯");
-            Console.ResetColor();
         }
         public void CheckCollisions(Paddle p1, Paddle p2)
         {
@@ -61,7 +60,6 @@ namespace Labb2_ConsolePong
                 {
                     XVelocity *= -1;
                     Program.SpeedUp();
-                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
             foreach (Vector2 position in p2.Positions)
@@ -70,7 +68,6 @@ namespace Labb2_ConsolePong
                 {
                     XVelocity *= -1;
                     Program.SpeedUp();
-                    Console.ForegroundColor = ConsoleColor.Red;
                 }
             }
         }

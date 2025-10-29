@@ -92,6 +92,7 @@ namespace Labb2_ConsolePong
                 Console.Clear();
             }
             ball.Reset();
+            Program.ResetSpeed();
         }
         void CheckScore()
         {

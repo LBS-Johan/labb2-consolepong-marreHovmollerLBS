@@ -11,9 +11,9 @@ namespace Labb2_ConsolePong
         {
             Console.OutputEncoding = Encoding.UTF8; //Tillåt alla Unicode-symboler
 
-            baseSpeed = 100;
+            baseSpeed = 60;
             gameSpeed = baseSpeed;
-            speedModifier = 2f;
+            speedModifier = 0.9f;
             Game game = new Game();
             game.StartGame();
 
@@ -33,7 +33,10 @@ namespace Labb2_ConsolePong
         public static void SpeedUp()
         {
             gameSpeed *= speedModifier; 
-            //(int) Math.Round(float)
+        }
+        public static void ResetSpeed()
+        {
+            gameSpeed = baseSpeed;
         }
     }
 }
