@@ -30,7 +30,7 @@ namespace Labb2_ConsolePong
             score2 = 0;
             player1 = new Paddle(1, 10, 5);
             player2 = new Paddle(Width - 1, 10, 5);
-            ball = new Ball(Width / 2, Height / 2, 1, 1);
+            ball = new Ball(Width / 2, Height / 2, 1, 1);   //(Width / 2, Height / 2) = Mitten av skärmen
 
             Console.CursorVisible = false;
         }
@@ -39,13 +39,6 @@ namespace Labb2_ConsolePong
         {
             //Töm hela skärmen i början av varje uppdatering.
             Console.Clear();
-            Update();
-            CheckInput();
-            //Return true om spelet ska fortsätta
-            return !CheckWin();
-        }
-        void Update()
-        {
             // Spelar-relaterat
             player1.GetPositions();
             player2.GetPositions();
@@ -55,7 +48,11 @@ namespace Labb2_ConsolePong
             // Spel-relaterat
             CheckScore();
             Draw();
+            CheckInput();
+            //Return true om spelet ska fortsätta
+            return !CheckWin();
         }
+
         void CheckInput()
         {
             if (Input.IsPressed(ConsoleKey.UpArrow))
@@ -76,11 +73,16 @@ namespace Labb2_ConsolePong
                 player1.Move(1); //Flytta spelare 1 nedåt
             }
         }
+
+        /// <summary>
+        /// Återställ hela spelet förutom poängräkningen
+        /// </summary>
         void Reset()
         {
-            int countdownLength = 3;
-            int duration = 500;
+            int countdownLength = 3;    //Antalet tal spelet går igenom under nedräkningen innan spelet börjar igen
+            int duration = 500;         //Väntetiden mellan tal under nedräkningen i millisekunder
 
+            // Nedräkning
             for (int i = countdownLength; i > 0; i--)
             {
                 Console.SetCursorPosition(Width / 2, Height / 2);
@@ -91,9 +93,13 @@ namespace Labb2_ConsolePong
 
                 Console.Clear();
             }
-            ball.Reset();
-            Program.ResetSpeed();
+            ball.Reset();               
+            Program.ResetSpeed();       
         }
+
+        /// <summary>
+        /// Kolla ifall bollen gått utanför kanten på någon av spelarnas sida, och ge motsatt spelare poäng samt återställ spelet
+        /// </summary>
         void CheckScore()
         {
             if (ball.X == 1)
@@ -107,6 +113,9 @@ namespace Labb2_ConsolePong
                 Reset();
             }
         }
+        /// <summary>
+        /// Alla metoder som skriver ut det som visas på skärmen anropas här
+        /// </summary>
         void Draw()
         {
             Console.SetCursorPosition(2, 1);
@@ -123,6 +132,12 @@ namespace Labb2_ConsolePong
         {
             return false;
         }
+        /// <summary>
+        /// Generera ett slumptal
+        /// </summary>
+        /// <param name="min">Minimivärdet för slumptalet</param>
+        /// <param name="max">Maximivärdet för slumptalet</param>
+        /// <returns>En int mellan min och max</returns>
         public static int RandomNumber(int min, int max)
         {
             Random rand = new Random();

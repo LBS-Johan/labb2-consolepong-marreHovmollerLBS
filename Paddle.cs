@@ -27,6 +27,12 @@ namespace Labb2_ConsolePong
                 Y += yAmount;
             }
         }
+
+        /// <summary>
+        /// Kollar om brädet får röra sig utifrån nuvarande riktning och storlek på planen
+        /// </summary>
+        /// <param name="direction">Brädets nuvarande riktning (-1 eller 1)</param>
+        /// <returns>true om brädet får röra sig, annars false</returns>
         private bool MoveAllowed(int direction)
         {
             foreach (Vector2 position in Positions)
@@ -39,6 +45,10 @@ namespace Labb2_ConsolePong
             }
             return true;
         }
+
+        /// <summary>
+        /// Ritar ut symbolen "┃" vid alla positioner som brädet består av
+        /// </summary>
         public void Draw()
         {
             foreach (Vector2 position in Positions)
@@ -49,11 +59,16 @@ namespace Labb2_ConsolePong
                 Console.Write("┃");
             }
         }
+
+        /// <summary>
+        /// Uppdatera arrayen med Vector2-positioner som brädet består av
+        /// </summary>
         public void GetPositions()
         {
+            // Höj Y-värdet med ett steg och skapa en position baserat på storleken på Size, så att brädet får rätt längd
             for (int i = 0; i < Size; i++)
             {
-                Positions[i] = new Vector2(X, Y + i);
+                Positions[i] = new Vector2(X, Y + i); 
             }
         }
     }
